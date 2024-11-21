@@ -453,7 +453,6 @@ export default function transformProps(
     setControlValue = () => {},
     onContextMenu,
     onLegendStateChanged,
-    getChartId,
     getExtraState,
     setExtraState,
   } = hooks;
@@ -687,7 +686,6 @@ export default function transformProps(
     legendData,
     onContextMenu,
     onLegendStateChanged,
-    getChartId,
     onFocusedSeries,
     xValueFormatter: tooltipFormatter,
     xAxis: {

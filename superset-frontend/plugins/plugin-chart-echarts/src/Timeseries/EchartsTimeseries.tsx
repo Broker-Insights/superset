@@ -35,8 +35,6 @@ import Echart from '../components/Echart';
 import { TimeseriesChartTransformedProps } from './types';
 import { formatSeriesName } from '../utils/series';
 import { ExtraControls } from '../components/ExtraControls';
-import { useSelector, useDispatch } from 'react-redux';
-import { increment, setVal } from './datazoomSlice'; 
 
 const TIMER_DURATION = 300;
 
@@ -53,7 +51,6 @@ export default function EchartsTimeseries({
   legendData = [],
   onContextMenu,
   onLegendStateChanged,
-  getChartId,
   onFocusedSeries,
   xValueFormatter,
   xAxis,
@@ -70,9 +67,6 @@ export default function EchartsTimeseries({
   const clickTimer = useRef<ReturnType<typeof setTimeout>>();
   const extraControlRef = useRef<HTMLDivElement>(null);
   const [extraControlHeight, setExtraControlHeight] = useState(0);
-
-  //const count = useSelector((state: any) => state.datazoom.value);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     const updatedHeight = extraControlRef.current?.offsetHeight || 0;

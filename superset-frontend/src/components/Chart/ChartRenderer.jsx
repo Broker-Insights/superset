@@ -114,7 +114,6 @@ class ChartRenderer extends Component {
     this.handleContextMenuClosed = this.handleContextMenuClosed.bind(this);
     this.handleLegendStateChanged = this.handleLegendStateChanged.bind(this);
     this.onContextMenuFallback = this.onContextMenuFallback.bind(this);
-    this.handleGetChartId = this.handleGetChartId.bind(this);
     this.handleGetExtraState = this.handleGetExtraState.bind(this);
     this.handleSetExtraState = this.handleSetExtraState.bind(this);
 
@@ -131,7 +130,6 @@ class ChartRenderer extends Component {
       setDataMask: dataMask => {
         this.props.actions?.updateDataMask(this.props.chartId, dataMask);
       },
-      getChartId: this.handleGetChartId,
       getExtraState: this.handleGetExtraState,
       setExtraState: this.handleSetExtraState,
     };
@@ -140,15 +138,6 @@ class ChartRenderer extends Component {
     // the plugins, hence we need to clone it to avoid state mutation
     // until we change the reducers to use Redux Toolkit with Immer
     this.mutableQueriesResponse = cloneDeep(this.props.queriesResponse);
-  }
-
-  handleGetChartId(newZoomStart) {
-    console.log(newZoomStart);
-    console.log(this.props.zoomStart);
-    this.props.onUpdateZoom(newZoomStart);
-    console.log(this.props.zoomStart);
-    console.log('handler!!');
-    return this.props.chartId;
   }
 
   handleGetExtraState() {

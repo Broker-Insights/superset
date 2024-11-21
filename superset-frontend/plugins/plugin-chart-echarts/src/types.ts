@@ -134,7 +134,6 @@ export interface BaseTransformedProps<F> {
   ) => void;
   setDataMask?: SetDataMaskHook;
   onLegendStateChanged?: (state: LegendState) => void;
-  getChartId?: (newZoomStart: number) => any;
   filterState?: FilterState;
   refs: Refs;
   width: number;
