@@ -67,6 +67,9 @@ type Hooks = {
   setDataMask?: SetDataMaskHook;
   /** handle tooltip */
   setTooltip?: HandlerFunction;
+  getChartId?: HandlerFunction;
+  getExtraState?: HandlerFunction;
+  setExtraState?: HandlerFunction;
 } & PlainObject;
 
 /**

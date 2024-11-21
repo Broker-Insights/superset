@@ -35,6 +35,8 @@ import Echart from '../components/Echart';
 import { TimeseriesChartTransformedProps } from './types';
 import { formatSeriesName } from '../utils/series';
 import { ExtraControls } from '../components/ExtraControls';
+import { useSelector, useDispatch } from 'react-redux';
+import { increment, setVal } from './datazoomSlice'; 
 
 const TIMER_DURATION = 300;
 
@@ -51,12 +53,15 @@ export default function EchartsTimeseries({
   legendData = [],
   onContextMenu,
   onLegendStateChanged,
+  getChartId,
   onFocusedSeries,
   xValueFormatter,
   xAxis,
   refs,
   emitCrossFilters,
   coltypeMapping,
+  getExtraState,
+  setExtraState,
 }: TimeseriesChartTransformedProps) {
   const { stack } = formData;
   const echartRef = useRef<EchartsHandler | null>(null);
@@ -65,6 +70,10 @@ export default function EchartsTimeseries({
   const clickTimer = useRef<ReturnType<typeof setTimeout>>();
   const extraControlRef = useRef<HTMLDivElement>(null);
   const [extraControlHeight, setExtraControlHeight] = useState(0);
+
+  //const count = useSelector((state: any) => state.datazoom.value);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const updatedHeight = extraControlRef.current?.offsetHeight || 0;
     setExtraControlHeight(updatedHeight);
@@ -257,6 +266,23 @@ export default function EchartsTimeseries({
       }
     },
   };
+
+  useEffect(() => {
+    let instance = echartRef.current?.getEchartInstance();
+    instance?.on('datazoom',  (e: any) => {
+      if(e.start !== undefined) {
+        let extraState = getExtraState?.();
+        extraState.zoomStart = e.start;
+        setExtraState?.(extraState);
+      }
+      if(e.end !== undefined) {
+        let extraState = getExtraState?.();
+        extraState.zoomEnd = e.end;
+        setExtraState?.(extraState);
+      }
+    });
+    echartRef.current?.getEchartInstance()?.dispatchAction({type: 'dataZoom', start: getExtraState?.().zoomStart, end: getExtraState?.().zoomEnd});
+  });
 
   return (
     <>

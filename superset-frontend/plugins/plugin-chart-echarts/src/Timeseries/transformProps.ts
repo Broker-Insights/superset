@@ -122,6 +122,7 @@ export default function transformProps(
     theme,
     inContextMenu,
     emitCrossFilters,
+    myTest,
   } = chartProps;
 
   let focusedSeries: string | null = null;
@@ -449,6 +450,9 @@ export default function transformProps(
     setControlValue = () => {},
     onContextMenu,
     onLegendStateChanged,
+    getChartId,
+    getExtraState,
+    setExtraState,
   } = hooks;
 
   const addYAxisLabelOffset = !!yAxisTitle;
@@ -623,7 +627,7 @@ export default function transformProps(
     },
     series: dedupSeries(series),
     toolbox: {
-      show: zoomable,
+      /*show: zoomable,
       top: TIMESERIES_CONSTANTS.toolboxTop,
       right: TIMESERIES_CONSTANTS.toolboxRight,
       feature: {
@@ -634,7 +638,7 @@ export default function transformProps(
             back: t('restore zoom'),
           },
         },
-      },
+      },*/
     },
     dataZoom: zoomable
       ? [
@@ -645,7 +649,7 @@ export default function transformProps(
             bottom: TIMESERIES_CONSTANTS.zoomBottom,
             yAxisIndex: isHorizontal ? 0 : undefined,
           },
-          {
+          /*{
             type: 'inside',
             yAxisIndex: 0,
             zoomOnMouseWheel: false,
@@ -656,7 +660,7 @@ export default function transformProps(
             xAxisIndex: 0,
             zoomOnMouseWheel: false,
             moveOnMouseWheel: true,
-          },
+          },*/
         ]
       : [],
   };
@@ -679,6 +683,7 @@ export default function transformProps(
     legendData,
     onContextMenu,
     onLegendStateChanged,
+    getChartId,
     onFocusedSeries,
     xValueFormatter: tooltipFormatter,
     xAxis: {
@@ -687,5 +692,7 @@ export default function transformProps(
     },
     refs,
     coltypeMapping: dataTypes,
+    getExtraState,
+    setExtraState,
   };
 }

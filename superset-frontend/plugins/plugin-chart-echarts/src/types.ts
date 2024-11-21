@@ -44,6 +44,7 @@ export type EchartsStylesProps = {
 export type Refs = {
   echartRef?: Ref<EchartsHandler>;
   divRef?: RefObject<HTMLDivElement>;
+  myRef?: Ref<number>;
 };
 
 export interface EchartsProps {
@@ -133,11 +134,14 @@ export interface BaseTransformedProps<F> {
   ) => void;
   setDataMask?: SetDataMaskHook;
   onLegendStateChanged?: (state: LegendState) => void;
+  getChartId?: (newZoomStart: number) => any;
   filterState?: FilterState;
   refs: Refs;
   width: number;
   emitCrossFilters?: boolean;
   coltypeMapping?: Record<string, number>;
+  getExtraState?: () => any;
+  setExtraState?: (newExtraState: any) => void;
 }
 
 export type CrossFilterTransformedProps = {

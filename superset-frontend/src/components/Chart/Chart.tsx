@@ -178,7 +178,7 @@ const MonospaceDiv = styled.div`
   overflow-x: auto;
   white-space: pre-wrap;
 `;
-class Chart extends PureComponent<ChartProps, {}> {
+class Chart extends PureComponent<ChartProps, {zoomStart: number, extraState: any}> {
   static defaultProps = defaultProps;
 
   renderStartTime: any;
@@ -187,6 +187,9 @@ class Chart extends PureComponent<ChartProps, {}> {
     super(props);
     this.handleRenderContainerFailure =
       this.handleRenderContainerFailure.bind(this);
+    this.handleUpdateZoom = this.handleUpdateZoom.bind(this);
+    this.handleUpdateExtraState = this.handleUpdateExtraState.bind(this);
+    this.state = {zoomStart: 10, extraState: {}};
   }
 
   componentDidMount() {
@@ -233,6 +236,14 @@ class Chart extends PureComponent<ChartProps, {}> {
       ts: new Date().getTime(),
       duration: Logger.getTimestamp() - this.renderStartTime,
     });
+  }
+
+  handleUpdateZoom(newZoom: number) {
+    this.setState({zoomStart: newZoom});
+  }
+
+  handleUpdateExtraState(newExtraState: any) {
+    this.setState({extraState: newExtraState});
   }
 
   renderErrorMessage(queryResponse: ChartErrorType) {
@@ -305,6 +316,10 @@ class Chart extends PureComponent<ChartProps, {}> {
             {...this.props}
             source={this.props.dashboardId ? 'dashboard' : 'explore'}
             data-test={this.props.vizType}
+            zoomStart={this.state.zoomStart}
+            onUpdateZoom={this.handleUpdateZoom}
+            extraState={this.state.extraState}
+            onUpdateExtraState={this.handleUpdateExtraState}
           />
         ) : (
           <Loading />
