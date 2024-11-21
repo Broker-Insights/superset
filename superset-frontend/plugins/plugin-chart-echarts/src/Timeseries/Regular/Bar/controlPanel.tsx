@@ -30,6 +30,8 @@ import {
   sharedControls,
 } from '@superset-ui/chart-controls';
 import {
+  dataZoom,
+  dataZoomSliderOptions,
   legendSection,
   minorTicks,
   richTooltipSection,
@@ -51,7 +53,6 @@ const {
   minorSplitLine,
   truncateYAxis,
   yAxisBounds,
-  zoomable,
   orientation,
 } = DEFAULT_FORM_DATA;
 
@@ -297,19 +298,9 @@ const config: ControlPanelConfig = {
         ['color_scheme'],
         ['time_shift_color'],
         ...showValueSection,
+        [dataZoom],
+        ...dataZoomSliderOptions,
         [minorTicks],
-        [
-          {
-            name: 'zoomable',
-            config: {
-              type: 'CheckboxControl',
-              label: t('Data Zoom'),
-              default: zoomable,
-              renderTrigger: true,
-              description: t('Enable data zooming controls'),
-            },
-          },
-        ],
         ...legendSection,
         [<ControlSubSectionHeader>{t('X Axis')}</ControlSubSectionHeader>],
         ...createAxisControl('x'),
