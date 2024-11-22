@@ -262,22 +262,26 @@ export default function EchartsTimeseries({
   };
 
   useEffect(() => {
-    let instance = echartRef.current?.getEchartInstance();
-    instance?.on('datazoom',  (e: any) => {
-      const dataZoom = instance.getOption().dataZoom;
-      if(dataZoom) {
-        const slider = (dataZoom as any).find((elem: any) => elem.type === 'slider');
-        let extraState = getExtraState?.();
-        extraState.zoomStart = slider.start;
-        extraState.zoomEnd = slider.end;
-        setExtraState?.(extraState);
-      }
-    });
-    echartRef.current?.getEchartInstance()?.dispatchAction({type: 'dataZoom', start: getExtraState?.().zoomStart, end: getExtraState?.().zoomEnd});
+    if(formData.zoomable) {
+      let instance = echartRef.current?.getEchartInstance();
+      instance?.on('datazoom',  (e: any) => {
+        const dataZoom = instance?.getOption().dataZoom;
+        if(dataZoom) {
+          const slider = (dataZoom as any).find((elem: any) => elem.type === 'slider');
+          let extraState = getExtraState?.();
+          extraState.zoomStart = slider.start;
+          extraState.zoomEnd = slider.end;
+          setExtraState?.(extraState);
+        }
+      });
+      echartRef.current?.getEchartInstance()?.dispatchAction({type: 'dataZoom', start: getExtraState?.().zoomStart, end: getExtraState?.().zoomEnd});
+    }
   });
 
   useEffect(() => {
-    echartRef.current?.getEchartInstance()?.dispatchAction({type: 'dataZoom', start: formData.zoomStart, end: formData.zoomEnd});
+    if(formData.zoomable) {
+      echartRef.current?.getEchartInstance()?.dispatchAction({type: 'dataZoom', start: formData.zoomStart, end: formData.zoomEnd});
+    }
   }, [formData.zoomStart, formData.zoomEnd]);
 
   return (
