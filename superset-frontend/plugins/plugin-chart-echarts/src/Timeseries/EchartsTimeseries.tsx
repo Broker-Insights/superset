@@ -230,11 +230,6 @@ export default function EchartsTimeseries({
         });
       }
     },
-    /*datazoom: payload => {
-      console.log(echartRef.current?.getEchartInstance()?.getOption());
-      console.log(echartRef.current?.getEchartInstance()?.getOption().dataZoom);
-      console.log(payload);
-    }*/
   };
 
   const zrEventHandlers: EventHandlers = {
