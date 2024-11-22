@@ -35,6 +35,7 @@ import Echart from '../components/Echart';
 import { TimeseriesChartTransformedProps } from './types';
 import { formatSeriesName } from '../utils/series';
 import { ExtraControls } from '../components/ExtraControls';
+import { ChartSource } from 'src/types/ChartSource';
 
 const TIMER_DURATION = 300;
 
@@ -59,6 +60,7 @@ export default function EchartsTimeseries({
   coltypeMapping,
   getExtraState,
   setExtraState,
+  source,
 }: TimeseriesChartTransformedProps) {
   const { stack } = formData;
   const echartRef = useRef<EchartsHandler | null>(null);
@@ -262,30 +264,27 @@ export default function EchartsTimeseries({
   };
 
   useEffect(() => {
-    if(formData.zoomable) {
+    if(source === ChartSource.Dashboard && formData.zoomable) {
       let instance = echartRef.current?.getEchartInstance();
       instance?.on('datazoom',  (e: any) => {
         const dataZoom = instance?.getOption().dataZoom;
-        //console.log(dataZoom);
         if(dataZoom) {
           const slider = (dataZoom as any).find((elem: any) => elem.type === 'slider');
           let extraState = getExtraState?.();
           extraState.zoomStart = slider.start;
           extraState.zoomEnd = slider.end;
           setExtraState?.(extraState);
-          console.log(extraState);
         }
       });
-      console.log(getExtraState?.().zoomStart + ' ' + getExtraState?.().zoomEnd);
       echartRef.current?.getEchartInstance()?.dispatchAction({type: 'dataZoom', start: getExtraState?.().zoomStart, end: getExtraState?.().zoomEnd});
     }
   });
 
-  /*useEffect(() => {
-    if(formData.zoomable) {
+  useEffect(() => {
+    if(source === ChartSource.Explore && formData.zoomable) {
       echartRef.current?.getEchartInstance()?.dispatchAction({type: 'dataZoom', start: formData.zoomStart, end: formData.zoomEnd});
     }
-  }, [formData.zoomStart, formData.zoomEnd]);*/
+  }, [formData.zoomStart, formData.zoomEnd]);
 
   return (
     <>

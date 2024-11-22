@@ -382,6 +382,7 @@ class ChartRenderer extends Component {
             emitCrossFilters={emitCrossFilters}
             legendState={this.state.legendState}
             {...drillToDetailProps}
+            source={this.props.source}
           />
         </div>
       </>

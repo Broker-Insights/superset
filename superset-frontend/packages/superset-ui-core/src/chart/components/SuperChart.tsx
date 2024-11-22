@@ -174,6 +174,7 @@ class SuperChart extends PureComponent<Props, {}> {
       enableNoResults,
       noResults,
       theme,
+      source,
       ...rest
     } = this.props as PropsWithDefault;
 
@@ -183,6 +184,7 @@ class SuperChart extends PureComponent<Props, {}> {
       height,
       width,
       theme,
+      source,
     });
 
     let chart;

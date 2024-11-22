@@ -35,6 +35,7 @@ import {
 import type { EChartsCoreOption, EChartsType } from 'echarts/core';
 import type { TooltipMarker } from 'echarts/types/src/util/format';
 import { StackControlsValue } from './constants';
+import { ChartSource } from 'src/types/ChartSource';
 
 export type EchartsStylesProps = {
   height: number;
@@ -141,6 +142,7 @@ export interface BaseTransformedProps<F> {
   coltypeMapping?: Record<string, number>;
   getExtraState?: () => any;
   setExtraState?: (newExtraState: any) => void;
+  source?: ChartSource;
 }
 
 export type CrossFilterTransformedProps = {

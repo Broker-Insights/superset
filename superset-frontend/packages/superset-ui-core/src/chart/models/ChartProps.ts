@@ -38,6 +38,7 @@ import {
 } from '../types/Base';
 import { QueryData, DataRecordFilters } from '..';
 import { SupersetTheme } from '../../style';
+import { ChartSource } from 'src/types/ChartSource';
 
 // TODO: more specific typing for these fields of ChartProps
 type AnnotationData = PlainObject;
@@ -107,6 +108,8 @@ export interface ChartPropsConfig {
   inputRef?: RefObject<any>;
   /** Theme object */
   theme: SupersetTheme;
+  /** Is the chart coming from a dashboard or explore */
+  source?: ChartSource;
 }
 
 const DEFAULT_WIDTH = 800;
@@ -157,6 +160,8 @@ export default class ChartProps<FormData extends RawFormData = RawFormData> {
 
   theme: SupersetTheme;
 
+  source: ChartSource;
+
   constructor(config: ChartPropsConfig & { formData?: FormData } = {}) {
     const {
       annotationData = {},
@@ -178,6 +183,7 @@ export default class ChartProps<FormData extends RawFormData = RawFormData> {
       inContextMenu = false,
       emitCrossFilters = false,
       theme,
+      source,
     } = config;
     this.width = width;
     this.height = height;
@@ -200,6 +206,7 @@ export default class ChartProps<FormData extends RawFormData = RawFormData> {
     this.inContextMenu = inContextMenu;
     this.emitCrossFilters = emitCrossFilters;
     this.theme = theme;
+    this.source = source;
   }
 }
 
@@ -225,6 +232,7 @@ ChartProps.createSelector = function create(): ChartPropsSelector {
     input => input.inContextMenu,
     input => input.emitCrossFilters,
     input => input.theme,
+    input => input.source,
     (
       annotationData,
       datasource,
@@ -245,6 +253,7 @@ ChartProps.createSelector = function create(): ChartPropsSelector {
       inContextMenu,
       emitCrossFilters,
       theme,
+      source,
     ) =>
       new ChartProps({
         annotationData,
@@ -266,6 +275,7 @@ ChartProps.createSelector = function create(): ChartPropsSelector {
         inContextMenu,
         emitCrossFilters,
         theme,
+        source,
       }),
   );
 };
