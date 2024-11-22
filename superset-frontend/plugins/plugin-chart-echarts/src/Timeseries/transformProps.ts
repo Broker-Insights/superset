@@ -655,14 +655,14 @@ export default function transformProps(
           {
             type: 'inside',
             yAxisIndex: 0,
-            zoomOnMouseWheel: true,
-            moveOnMouseWheel: false,
+            zoomOnMouseWheel: false,
+            moveOnMouseWheel: true,
           },
           {
             type: 'inside',
             xAxisIndex: 0,
-            zoomOnMouseWheel: true,
-            moveOnMouseWheel: false,
+            zoomOnMouseWheel: false,
+            moveOnMouseWheel: true,
           },
         ]
       : [],
