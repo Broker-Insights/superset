@@ -64,8 +64,6 @@ const propTypes = {
   source: PropTypes.oneOf([ChartSource.Dashboard, ChartSource.Explore]),
   emitCrossFilters: PropTypes.bool,
   // other
-  onUpdateZoom: PropTypes.func,
-  zoomStart: PropTypes.number,
   onUpdateExtraState: PropTypes.func,
   extraState: PropTypes.object
 };

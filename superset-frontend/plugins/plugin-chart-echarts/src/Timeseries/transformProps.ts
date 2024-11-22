@@ -122,7 +122,6 @@ export default function transformProps(
     theme,
     inContextMenu,
     emitCrossFilters,
-    myTest,
   } = chartProps;
 
   let focusedSeries: string | null = null;

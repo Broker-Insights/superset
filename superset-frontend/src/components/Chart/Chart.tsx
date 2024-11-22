@@ -316,8 +316,6 @@ class Chart extends PureComponent<ChartProps, {zoomStart: number, extraState: an
             {...this.props}
             source={this.props.dashboardId ? 'dashboard' : 'explore'}
             data-test={this.props.vizType}
-            zoomStart={this.state.zoomStart}
-            onUpdateZoom={this.handleUpdateZoom}
             extraState={this.state.extraState}
             onUpdateExtraState={this.handleUpdateExtraState}
           />

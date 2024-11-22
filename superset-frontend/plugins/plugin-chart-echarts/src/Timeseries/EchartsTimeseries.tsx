@@ -266,23 +266,26 @@ export default function EchartsTimeseries({
       let instance = echartRef.current?.getEchartInstance();
       instance?.on('datazoom',  (e: any) => {
         const dataZoom = instance?.getOption().dataZoom;
+        //console.log(dataZoom);
         if(dataZoom) {
           const slider = (dataZoom as any).find((elem: any) => elem.type === 'slider');
           let extraState = getExtraState?.();
           extraState.zoomStart = slider.start;
           extraState.zoomEnd = slider.end;
           setExtraState?.(extraState);
+          console.log(extraState);
         }
       });
+      console.log(getExtraState?.().zoomStart + ' ' + getExtraState?.().zoomEnd);
       echartRef.current?.getEchartInstance()?.dispatchAction({type: 'dataZoom', start: getExtraState?.().zoomStart, end: getExtraState?.().zoomEnd});
     }
   });
 
-  useEffect(() => {
+  /*useEffect(() => {
     if(formData.zoomable) {
       echartRef.current?.getEchartInstance()?.dispatchAction({type: 'dataZoom', start: formData.zoomStart, end: formData.zoomEnd});
     }
-  }, [formData.zoomStart, formData.zoomEnd]);
+  }, [formData.zoomStart, formData.zoomEnd]);*/
 
   return (
     <>
