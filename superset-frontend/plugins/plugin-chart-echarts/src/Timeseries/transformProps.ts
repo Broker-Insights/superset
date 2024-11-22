@@ -639,7 +639,6 @@ export default function transformProps(
             zoom: t('zoom area'),
             back: t('restore zoom'),
           },
-          filterMode: 'none',
         },
       },
     },
@@ -658,14 +657,12 @@ export default function transformProps(
             yAxisIndex: 0,
             zoomOnMouseWheel: false,
             moveOnMouseWheel: true,
-            filterMode: 'none',
           },
           {
             type: 'inside',
             xAxisIndex: 0,
             zoomOnMouseWheel: false,
             moveOnMouseWheel: true,
-            filterMode: 'none',
           },
         ]
       : [],
