@@ -276,6 +276,10 @@ export default function EchartsTimeseries({
     echartRef.current?.getEchartInstance()?.dispatchAction({type: 'dataZoom', start: getExtraState?.().zoomStart, end: getExtraState?.().zoomEnd});
   });
 
+  useEffect(() => {
+    echartRef.current?.getEchartInstance()?.dispatchAction({type: 'dataZoom', start: formData.zoomStart, end: formData.zoomEnd});
+  }, [formData.zoomStart, formData.zoomEnd]);
+
   return (
     <>
       <div ref={extraControlRef}>
