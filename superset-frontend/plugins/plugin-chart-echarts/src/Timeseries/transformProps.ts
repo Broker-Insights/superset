@@ -629,7 +629,7 @@ export default function transformProps(
     },
     series: dedupSeries(series),
     toolbox: {
-      /*show: zoomable,
+      show: zoomable,
       top: TIMESERIES_CONSTANTS.toolboxTop,
       right: TIMESERIES_CONSTANTS.toolboxRight,
       feature: {
@@ -639,8 +639,9 @@ export default function transformProps(
             zoom: t('zoom area'),
             back: t('restore zoom'),
           },
+          filterMode: 'none',
         },
-      },*/
+      },
     },
     dataZoom: zoomable
       ? [
@@ -652,18 +653,20 @@ export default function transformProps(
             bottom: TIMESERIES_CONSTANTS.zoomBottom,
             yAxisIndex: isHorizontal ? 0 : undefined,
           },
-          /*{
+          {
             type: 'inside',
             yAxisIndex: 0,
             zoomOnMouseWheel: false,
             moveOnMouseWheel: true,
+            filterMode: 'none',
           },
           {
             type: 'inside',
             xAxisIndex: 0,
             zoomOnMouseWheel: false,
             moveOnMouseWheel: true,
-          },*/
+            filterMode: 'none',
+          },
         ]
       : [],
   };

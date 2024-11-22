@@ -230,6 +230,11 @@ export default function EchartsTimeseries({
         });
       }
     },
+    /*datazoom: payload => {
+      console.log(echartRef.current?.getEchartInstance()?.getOption());
+      console.log(echartRef.current?.getEchartInstance()?.getOption().dataZoom);
+      console.log(payload);
+    }*/
   };
 
   const zrEventHandlers: EventHandlers = {
@@ -264,14 +269,12 @@ export default function EchartsTimeseries({
   useEffect(() => {
     let instance = echartRef.current?.getEchartInstance();
     instance?.on('datazoom',  (e: any) => {
-      if(e.start !== undefined) {
+      const dataZoom = instance.getOption().dataZoom;
+      if(dataZoom) {
+        const slider = (dataZoom as any).find((elem: any) => elem.type === 'slider');
         let extraState = getExtraState?.();
-        extraState.zoomStart = e.start;
-        setExtraState?.(extraState);
-      }
-      if(e.end !== undefined) {
-        let extraState = getExtraState?.();
-        extraState.zoomEnd = e.end;
+        extraState.zoomStart = slider.start;
+        extraState.zoomEnd = slider.end;
         setExtraState?.(extraState);
       }
     });
