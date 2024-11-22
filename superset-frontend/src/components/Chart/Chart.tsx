@@ -178,7 +178,7 @@ const MonospaceDiv = styled.div`
   overflow-x: auto;
   white-space: pre-wrap;
 `;
-class Chart extends PureComponent<ChartProps, {zoomStart: number, extraState: any}> {
+class Chart extends PureComponent<ChartProps, {extraState: any}> {
   static defaultProps = defaultProps;
 
   renderStartTime: any;
@@ -187,9 +187,8 @@ class Chart extends PureComponent<ChartProps, {zoomStart: number, extraState: an
     super(props);
     this.handleRenderContainerFailure =
       this.handleRenderContainerFailure.bind(this);
-    this.handleUpdateZoom = this.handleUpdateZoom.bind(this);
     this.handleUpdateExtraState = this.handleUpdateExtraState.bind(this);
-    this.state = {zoomStart: 10, extraState: {}};
+    this.state = {extraState: {}};
   }
 
   componentDidMount() {
@@ -236,10 +235,6 @@ class Chart extends PureComponent<ChartProps, {zoomStart: number, extraState: an
       ts: new Date().getTime(),
       duration: Logger.getTimestamp() - this.renderStartTime,
     });
-  }
-
-  handleUpdateZoom(newZoom: number) {
-    this.setState({zoomStart: newZoom});
   }
 
   handleUpdateExtraState(newExtraState: any) {

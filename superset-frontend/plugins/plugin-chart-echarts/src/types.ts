@@ -140,8 +140,8 @@ export interface BaseTransformedProps<F> {
   width: number;
   emitCrossFilters?: boolean;
   coltypeMapping?: Record<string, number>;
-  getExtraState?: () => any;
   setExtraState?: (newExtraState: any) => void;
+  extraState?: any;
   source?: ChartSource;
 }
 

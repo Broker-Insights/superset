@@ -112,7 +112,6 @@ class ChartRenderer extends Component {
     this.handleContextMenuClosed = this.handleContextMenuClosed.bind(this);
     this.handleLegendStateChanged = this.handleLegendStateChanged.bind(this);
     this.onContextMenuFallback = this.onContextMenuFallback.bind(this);
-    this.handleGetExtraState = this.handleGetExtraState.bind(this);
     this.handleSetExtraState = this.handleSetExtraState.bind(this);
 
     this.hooks = {
@@ -128,7 +127,6 @@ class ChartRenderer extends Component {
       setDataMask: dataMask => {
         this.props.actions?.updateDataMask(this.props.chartId, dataMask);
       },
-      getExtraState: this.handleGetExtraState,
       setExtraState: this.handleSetExtraState,
     };
 
@@ -136,10 +134,6 @@ class ChartRenderer extends Component {
     // the plugins, hence we need to clone it to avoid state mutation
     // until we change the reducers to use Redux Toolkit with Immer
     this.mutableQueriesResponse = cloneDeep(this.props.queriesResponse);
-  }
-
-  handleGetExtraState() {
-    return this.props.extraState;
   }
 
   handleSetExtraState(newExtraState) {
@@ -177,7 +171,9 @@ class ChartRenderer extends Component {
         nextProps.formData.color_scheme !== this.props.formData.color_scheme ||
         nextProps.formData.stack !== this.props.formData.stack ||
         nextProps.cacheBusterProp !== this.props.cacheBusterProp ||
-        nextProps.emitCrossFilters !== this.props.emitCrossFilters
+        nextProps.emitCrossFilters !== this.props.emitCrossFilters ||
+        nextProps.source !== this.props.source ||
+        nextProps.extraState !== this.props.extraState
       );
     }
     return false;
@@ -382,6 +378,7 @@ class ChartRenderer extends Component {
             emitCrossFilters={emitCrossFilters}
             legendState={this.state.legendState}
             {...drillToDetailProps}
+            extraState={this.props.extraState}
             source={this.props.source}
           />
         </div>

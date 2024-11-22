@@ -122,6 +122,7 @@ export default function transformProps(
     theme,
     inContextMenu,
     emitCrossFilters,
+    extraState,
     source,
   } = chartProps;
 
@@ -453,7 +454,6 @@ export default function transformProps(
     setControlValue = () => {},
     onContextMenu,
     onLegendStateChanged,
-    getExtraState,
     setExtraState,
   } = hooks;
 
@@ -655,14 +655,14 @@ export default function transformProps(
           {
             type: 'inside',
             yAxisIndex: 0,
-            zoomOnMouseWheel: false,
-            moveOnMouseWheel: true,
+            zoomOnMouseWheel: true,
+            moveOnMouseWheel: false,
           },
           {
             type: 'inside',
             xAxisIndex: 0,
-            zoomOnMouseWheel: false,
-            moveOnMouseWheel: true,
+            zoomOnMouseWheel: true,
+            moveOnMouseWheel: false,
           },
         ]
       : [],
@@ -694,8 +694,8 @@ export default function transformProps(
     },
     refs,
     coltypeMapping: dataTypes,
-    getExtraState,
     setExtraState,
+    extraState,
     source,
   };
 }

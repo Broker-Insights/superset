@@ -68,7 +68,6 @@ type Hooks = {
   setDataMask?: SetDataMaskHook;
   /** handle tooltip */
   setTooltip?: HandlerFunction;
-  getExtraState?: HandlerFunction;
   setExtraState?: HandlerFunction;
 } & PlainObject;
 
@@ -108,6 +107,8 @@ export interface ChartPropsConfig {
   inputRef?: RefObject<any>;
   /** Theme object */
   theme: SupersetTheme;
+  /** Chart data to persist over the instance */
+  extraState?: JsonObject;
   /** Is the chart coming from a dashboard or explore */
   source?: ChartSource;
 }
@@ -160,7 +161,9 @@ export default class ChartProps<FormData extends RawFormData = RawFormData> {
 
   theme: SupersetTheme;
 
-  source: ChartSource;
+  extraState?: JsonObject;
+
+  source?: ChartSource;
 
   constructor(config: ChartPropsConfig & { formData?: FormData } = {}) {
     const {
@@ -183,6 +186,7 @@ export default class ChartProps<FormData extends RawFormData = RawFormData> {
       inContextMenu = false,
       emitCrossFilters = false,
       theme,
+      extraState,
       source,
     } = config;
     this.width = width;
@@ -206,6 +210,7 @@ export default class ChartProps<FormData extends RawFormData = RawFormData> {
     this.inContextMenu = inContextMenu;
     this.emitCrossFilters = emitCrossFilters;
     this.theme = theme;
+    this.extraState = extraState;
     this.source = source;
   }
 }
@@ -232,6 +237,7 @@ ChartProps.createSelector = function create(): ChartPropsSelector {
     input => input.inContextMenu,
     input => input.emitCrossFilters,
     input => input.theme,
+    input => input.extraState,
     input => input.source,
     (
       annotationData,
@@ -253,6 +259,7 @@ ChartProps.createSelector = function create(): ChartPropsSelector {
       inContextMenu,
       emitCrossFilters,
       theme,
+      extraState,
       source,
     ) =>
       new ChartProps({
@@ -275,6 +282,7 @@ ChartProps.createSelector = function create(): ChartPropsSelector {
         inContextMenu,
         emitCrossFilters,
         theme,
+        extraState,
         source,
       }),
   );

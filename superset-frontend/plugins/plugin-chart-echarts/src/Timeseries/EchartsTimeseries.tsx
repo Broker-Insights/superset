@@ -58,8 +58,8 @@ export default function EchartsTimeseries({
   refs,
   emitCrossFilters,
   coltypeMapping,
-  getExtraState,
   setExtraState,
+  extraState,
   source,
 }: TimeseriesChartTransformedProps) {
   const { stack } = formData;
@@ -270,13 +270,13 @@ export default function EchartsTimeseries({
         const dataZoom = instance?.getOption().dataZoom;
         if(dataZoom) {
           const slider = (dataZoom as any).find((elem: any) => elem.type === 'slider');
-          let extraState = getExtraState?.();
-          extraState.zoomStart = slider.start;
-          extraState.zoomEnd = slider.end;
-          setExtraState?.(extraState);
+          let newExtraState = extraState;
+          newExtraState.zoomStart = slider.start;
+          newExtraState.zoomEnd = slider.end;
+          setExtraState?.(newExtraState);
         }
       });
-      echartRef.current?.getEchartInstance()?.dispatchAction({type: 'dataZoom', start: getExtraState?.().zoomStart, end: getExtraState?.().zoomEnd});
+      echartRef.current?.getEchartInstance()?.dispatchAction({type: 'dataZoom', start: extraState.zoomStart, end: extraState.zoomEnd});
     }
   });
 
