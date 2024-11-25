@@ -651,6 +651,7 @@ export default function transformProps(
             zoomLock: zoomLock || false,
             bottom: TIMESERIES_CONSTANTS.zoomBottom,
             yAxisIndex: isHorizontal ? 0 : undefined,
+            brushSelect: !(zoomLock || false),
           },
           {
             type: 'inside',
