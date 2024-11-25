@@ -646,8 +646,8 @@ export default function transformProps(
       ? [
           {
             type: 'slider',
-            start: zoomStart || TIMESERIES_CONSTANTS.dataZoomStart,
-            end: zoomEnd || TIMESERIES_CONSTANTS.dataZoomEnd,
+            start: extraState?.zoomStart || zoomStart || TIMESERIES_CONSTANTS.dataZoomStart,
+            end: extraState?.zoomEnd || zoomEnd || TIMESERIES_CONSTANTS.dataZoomEnd,
             zoomLock: zoomLock || false,
             bottom: TIMESERIES_CONSTANTS.zoomBottom,
             yAxisIndex: isHorizontal ? 0 : undefined,

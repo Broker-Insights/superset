@@ -276,7 +276,6 @@ export default function EchartsTimeseries({
           setExtraState?.(newExtraState);
         }
       });
-      echartRef.current?.getEchartInstance()?.dispatchAction({type: 'dataZoom', start: extraState.zoomStart, end: extraState.zoomEnd});
     }
   });
 
