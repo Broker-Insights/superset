@@ -45,7 +45,6 @@ export type EchartsStylesProps = {
 export type Refs = {
   echartRef?: Ref<EchartsHandler>;
   divRef?: RefObject<HTMLDivElement>;
-  myRef?: Ref<number>;
 };
 
 export interface EchartsProps {

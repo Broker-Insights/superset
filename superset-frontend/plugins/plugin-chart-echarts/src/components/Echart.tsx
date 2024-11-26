@@ -117,7 +117,7 @@ function Echart(
     () => Object.keys(selectedValues) || [],
     [selectedValues],
   );
-  const previousSelection = useRef<string[]>([]); 
+  const previousSelection = useRef<string[]>([]);
 
   useImperativeHandle(ref, () => ({
     getEchartInstance: () => chartRef.current,
