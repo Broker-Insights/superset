@@ -628,7 +628,10 @@ export default function transformProps(
       data: legendData as string[],
     },
     series: dedupSeries(series),
-    toolbox: {
+    /**
+     * BI: Turn off toolbox datazoom: box select and restore
+     */
+    /*toolbox: {
       show: zoomable,
       top: TIMESERIES_CONSTANTS.toolboxTop,
       right: TIMESERIES_CONSTANTS.toolboxRight,
@@ -641,7 +644,7 @@ export default function transformProps(
           },
         },
       },
-    },
+    },*/
     dataZoom: zoomable
       ? [
           {
