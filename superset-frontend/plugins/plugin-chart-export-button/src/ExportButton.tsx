@@ -23,8 +23,8 @@ export default function ExportButton(props: ExportButtonTransformedProps) {
   const sendMessage = () => {
     window.parent.postMessage(
       {
-        filters: props.formData.extraFormData?.filters || {},
-        data: props.queriesData[0].data || {}
+        filters: props.formData.extraFormData?.filters || [],
+        data: props.queriesData[0].data || []
       },
       document.referrer
     );
