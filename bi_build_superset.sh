@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 # Requires buildx : sudo sudo apt install docker-buildx
-docker blah buildx build -t superset_bi_base --target lean .
+docker buildx build -t superset_bi_base --target lean .
 
 REGION=eu-west-2
 AWS_ACCOUNT_ID=$(AWS_PROFILE=dev aws sts get-caller-identity --query Account --output text)
