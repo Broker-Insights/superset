@@ -14,6 +14,6 @@ docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/bi-superset:$TAG -
 
 echo Built $AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/bi-superset:$TAG
 echo In order to release push to ECR
-echo 'AWS_PROFILE=dev aws ecr get-login-password --region $REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com'
+echo "AWS_PROFILE=dev aws ecr get-login-password --region ${REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com"
 echo docker push $AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/bi-superset:$TAG
 echo Then apply IaC changes to use as active image for task definition / later through Code Deploy
