@@ -17,8 +17,8 @@ DATABASE_HOST = os.getenv("DATABASE_HOST")
 DATABASE_PORT = os.getenv("DATABASE_PORT")
 DATABASE_DB = os.getenv("DATABASE_DB")
 
-WEBDRIVER_BASEURL = os.getenv("WEBDRIVER_BASEURL", "http://test-euw2-superset.test-euw2-cluster:8088/")
-FRAME_ANCESTORS = os.getenv("FRAME_ANCESTORS", "test-euw2-dashboards.preprod.brokerinsights.com")
+WEBDRIVER_BASEURL = os.getenv("WEBDRIVER_BASEURL", "http://superset:8088/")
+FRAME_ANCESTORS = os.getenv("FRAME_ANCESTORS", "superset.company.com")
 
 # The SQLAlchemy connection string.
 SQLALCHEMY_DATABASE_URI = (
@@ -215,48 +215,4 @@ EXTRA_CATEGORICAL_COLOR_SCHEMES = [{
     "colors": ['#181932', '#F68818', '#4373A5', '#E2A607', '#D06F57', '#A476B4', '#6EC5CD', '#8CCCBB', '#9397CA', '#ECF2F9', '#9798A4', '#2D3165']
 }]
 
-# WP TODO: add other caches and review warnings:
-# FILTER_STATE_CACHE_CONFIG = {
-#     'CACHE_TYPE': 'RedisCache',
-#     'CACHE_DEFAULT_TIMEOUT': 86400,
-#     'CACHE_KEY_PREFIX': 'superset_filter_',
-#     'CACHE_REDIS_URL': 'redis://localhost:6379/2'
-# }
-
-#FIX yet untested:
 RATELIMIT_STORAGE_URI = f"redis://{REDIS_HOST}:{REDIS_PORT}"
-# logs:
-# sr/local/lib/python3.10/site-packages/flask_limiter/extension.py:333: UserWarning: Using the in-memory storage for tracking rate limits as no storage was explicitly specified. This is not recommended for production use. See: https://flask-limiter.readthedocs.io#configuring-a-storage-backend for documentation about configuring the storage backend.
-#    warnings.warn(
-#  2024-12-09 21:47:58,154:ERROR:flask_appbuilder.securit
-
-# also getting that all the time: superset redis.exceptions.ResponseError: invalid expire time in 'setex' command suggesting we try to set redis expiry to 0 ?
-#
-# 2024-12-09 22:52:26,815:WARNING:superset.utils.log:invalid expire time in 'setex' command
-# Traceback (most recent call last):
-#   File "/app/superset/commands/database/tables.py", line 62, in run
-#     self._model.get_all_table_names_in_schema(
-#   File "/app/superset/utils/cache.py", line 139, in wrapped_f
-#     cache.set(cache_key, obj, timeout=cache_timeout)
-#   File "/usr/local/lib/python3.10/site-packages/flask_caching/__init__.py", line 203, in set
-#     return self.cache.set(*args, **kwargs)
-#   File "/usr/local/lib/python3.10/site-packages/cachelib/redis.py", line 87, in set
-#     result = self._write_client.setex(
-#   File "/usr/local/lib/python3.10/site-packages/redis/commands/core.py", line 2353, in setex
-#     return self.execute_command("SETEX", name, time, value)
-#   File "/usr/local/lib/python3.10/site-packages/redis/client.py", line 1269, in execute_command
-#     return conn.retry.call_with_retry(
-#   File "/usr/local/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
-#     return do()
-#   File "/usr/local/lib/python3.10/site-packages/redis/client.py", line 1270, in <lambda>
-#     lambda: self._send_command_parse_response(
-#   File "/usr/local/lib/python3.10/site-packages/redis/client.py", line 1246, in _send_command_parse_response
-#     return self.parse_response(conn, command_name, **options)
-#   File "/usr/local/lib/python3.10/site-packages/redis/client.py", line 1286, in parse_response
-#     response = connection.read_response()
-#   File "/usr/local/lib/python3.10/site-packages/redis/connection.py", line 905, in read_response
-#     raise response
-# redis.exceptions.ResponseError: invalid expire time in 'setex' command
-
-
-# potentially useful read:
