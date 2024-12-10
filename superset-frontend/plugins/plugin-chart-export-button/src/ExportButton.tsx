@@ -23,6 +23,9 @@ export default function ExportButton(props: ExportButtonTransformedProps) {
   const sendMessage = () => {
     window.parent.postMessage(
       {
+        dashboardEvent: {
+          identifier: props.formData.identifier
+        },
         filters: props.formData.extraFormData?.filters || [],
         data: props.queriesData[0].data || []
       },

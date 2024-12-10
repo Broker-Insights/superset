@@ -133,6 +133,21 @@ const config: ControlPanelConfig = {
       controlSetRows: [
         [
           {
+            name: 'identifier',
+            config: {
+              type: 'SelectControl',
+              label: t('Identifier'),
+              renderTrigger: false,
+              choices: [
+                ['strategyExport', t('Strategy Export')],
+              ],
+              description: t('What action does the button perform?'),
+              validators: [validateNonEmpty],
+            },
+          },
+        ],
+        [
+          {
             name: 'button_text',
             config: {
               type: 'TextControl',
@@ -141,6 +156,7 @@ const config: ControlPanelConfig = {
               // ^ this makes it apply instantaneously, without triggering a "run query" button
               label: t('Button Text'),
               description: t('The text you want to see in the button'),
+              validators: [validateNonEmpty],
             },
           },
         ],
@@ -154,6 +170,7 @@ const config: ControlPanelConfig = {
               // ^ this makes it apply instantaneously, without triggering a "run query" button
               label: t('Tooltip Text'),
               description: t('The text you want to see in the button tooltip'),
+              validators: [validateNonEmpty],
             },
           },
         ],
