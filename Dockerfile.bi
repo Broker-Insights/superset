@@ -13,6 +13,6 @@ RUN apt-get install -y --no-install-recommends \
 #RUN pip install 'sqlglot>=25.24.0,<26'
 
 # Copy custom configuration
-COPY superset_config.py /app/pythonpath/superset_config.py
+COPY bi_superset_config.py /app/pythonpath/superset_config.py
 
 USER superset
