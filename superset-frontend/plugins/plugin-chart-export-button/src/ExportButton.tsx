@@ -16,27 +16,26 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { SupersetTheme } from '@superset-ui/core';
-import { Card as AntdCard } from 'antd-v5';
-import { CardProps as AntdCardProps } from 'antd-v5/lib/card';
+import React from 'react';
+import { ExportButtonTransformedProps } from "./types";
 
-export interface CardProps extends AntdCardProps {
-  padded?: boolean;
-}
-
-const Card = ({ padded, ...props }: CardProps) => (
-  <AntdCard
-    {...props}
-    css={(theme: SupersetTheme) => ({
-      // 'border-radius': `${theme.gridUnit}px`,
-      border: `1px solid ${theme.colors.grayscale.light2}`,
-      '.antd5-card-body': {
-        padding: padded ? theme.gridUnit * 4 : theme.gridUnit,
+export default function ExportButton(props: ExportButtonTransformedProps) {
+  const sendMessage = () => {
+    window.parent.postMessage(
+      {
+        dashboardEvent: {
+          identifier: props.formData.identifier
+        },
+        filters: props.formData.extraFormData?.filters || [],
+        data: props.queriesData[0].data || []
       },
-    })}
-  />
-);
+      document.referrer
+    );
+  }
 
-export default Object.assign(Card, {
-  Meta: AntdCard.Meta,
-});
+  return (
+    <div className="dashboard-export-button">
+      <p><a onClick={sendMessage} title={props.formData.tooltipText}>{props.formData.buttonText}</a></p>
+    </div>
+  );
+}

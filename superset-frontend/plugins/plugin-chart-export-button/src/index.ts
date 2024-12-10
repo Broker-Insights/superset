@@ -16,27 +16,12 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { SupersetTheme } from '@superset-ui/core';
-import { Card as AntdCard } from 'antd-v5';
-import { CardProps as AntdCardProps } from 'antd-v5/lib/card';
-
-export interface CardProps extends AntdCardProps {
-  padded?: boolean;
-}
-
-const Card = ({ padded, ...props }: CardProps) => (
-  <AntdCard
-    {...props}
-    css={(theme: SupersetTheme) => ({
-      // 'border-radius': `${theme.gridUnit}px`,
-      border: `1px solid ${theme.colors.grayscale.light2}`,
-      '.antd5-card-body': {
-        padding: padded ? theme.gridUnit * 4 : theme.gridUnit,
-      },
-    })}
-  />
-);
-
-export default Object.assign(Card, {
-  Meta: AntdCard.Meta,
-});
+// eslint-disable-next-line import/prefer-default-export
+export { default as ExportButtonChartPlugin } from './plugin';
+/**
+ * Note: this file exports the default export from ExportButton.tsx.
+ * If you want to export multiple visualization modules, you will need to
+ * either add additional plugin folders (similar in structure to ./plugin)
+ * OR export multiple instances of `ChartPlugin` extensions in ./plugin/index.ts
+ * which in turn load exports from ExportButton.tsx
+ */

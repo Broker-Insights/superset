@@ -82,6 +82,7 @@ import { PivotTableChartPlugin as PivotTableChartPluginV2 } from '@superset-ui/p
 import { HandlebarsChartPlugin } from '@superset-ui/plugin-chart-handlebars';
 import { FilterPlugins } from 'src/constants';
 import TimeTableChartPlugin from '../TimeTable';
+import { ExportButtonChartPlugin } from '@superset-ui/plugin-chart-export-button';
 
 export default class MainPreset extends Preset {
   constructor() {
@@ -178,6 +179,7 @@ export default class MainPreset extends Preset {
         new HandlebarsChartPlugin().configure({ key: 'handlebars' }),
         new EchartsBubbleChartPlugin().configure({ key: 'bubble_v2' }),
         ...experimentalPlugins,
+        new ExportButtonChartPlugin().configure({ key: 'chart_export_button' })
       ],
     });
   }

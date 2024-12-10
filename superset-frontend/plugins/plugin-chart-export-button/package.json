@@ -1,0 +1,31 @@
+{
+  "name": "@superset-ui/plugin-chart-export-button",
+  "version": "0.1.0",
+  "description": "Button to export query data and filters",
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "files": [
+    "esm",
+    "lib"
+  ],
+  "author": "Broker Insights",
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "@superset-ui/chart-controls": "*",
+    "@superset-ui/core": "*",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "prop-types": "*",
+    "lodash": "^4.17.11"
+  },
+  "devDependencies": {
+    "@babel/types": "^7.25.6",
+    "@types/jest": "^29.5.12",
+    "jest": "^29.7.0"
+  }
+}

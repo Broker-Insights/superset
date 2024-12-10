@@ -16,27 +16,18 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { SupersetTheme } from '@superset-ui/core';
-import { Card as AntdCard } from 'antd-v5';
-import { CardProps as AntdCardProps } from 'antd-v5/lib/card';
+import { ExportButtonChartPlugin } from '../src';
 
-export interface CardProps extends AntdCardProps {
-  padded?: boolean;
-}
-
-const Card = ({ padded, ...props }: CardProps) => (
-  <AntdCard
-    {...props}
-    css={(theme: SupersetTheme) => ({
-      // 'border-radius': `${theme.gridUnit}px`,
-      border: `1px solid ${theme.colors.grayscale.light2}`,
-      '.antd5-card-body': {
-        padding: padded ? theme.gridUnit * 4 : theme.gridUnit,
-      },
-    })}
-  />
-);
-
-export default Object.assign(Card, {
-  Meta: AntdCard.Meta,
+/**
+ * The example tests in this file act as a starting point, and
+ * we encourage you to build more. These tests check that the
+ * plugin loads properly, and focus on `transformProps`
+ * to ake sure that data, controls, and props are all
+ * treated correctly (e.g. formData from plugin controls
+ * properly transform the data and/or any resulting props).
+ */
+describe('plugin-export-button', () => {
+  it('exists', () => {
+    expect(ExportButtonChartPlugin).toBeDefined();
+  });
 });
