@@ -16,6 +16,7 @@ DATABASE_PASSWORD = os.getenv("DATABASE_PASSWORD")
 DATABASE_HOST = os.getenv("DATABASE_HOST")
 DATABASE_PORT = os.getenv("DATABASE_PORT")
 DATABASE_DB = os.getenv("DATABASE_DB")
+SECRET_KEY= os.getenv("SUPERSET_SECRET_KEY")
 
 WEBDRIVER_BASEURL = os.getenv("WEBDRIVER_BASEURL", "http://superset:8088/")
 FRAME_ANCESTORS = os.getenv("FRAME_ANCESTORS", "superset.company.com")

@@ -3,7 +3,6 @@ FROM superset_bi_base
 USER root
 RUN apt-get update && apt-get install -y sudo vim pkg-config default-libmysqlclient-dev gcc git
 RUN pip install mysqlclient trino psycopg2 flask-cors
-# apache-superset[cors]
 
 RUN apt-get install -y --no-install-recommends \
    ca-certificates curl firefox-esr           \
@@ -16,3 +15,4 @@ RUN apt-get install -y --no-install-recommends \
 COPY bi_superset_config.py /app/pythonpath/superset_config.py
 
 USER superset
+CMD ["/usr/bin/run-server.sh"]
