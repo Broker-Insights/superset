@@ -15,3 +15,4 @@ RUN apt-get install -y --no-install-recommends \
 COPY bi_superset_config.py /app/pythonpath/superset_config.py
 
 USER superset
+CMD ["/usr/bin/run-server.sh"]
