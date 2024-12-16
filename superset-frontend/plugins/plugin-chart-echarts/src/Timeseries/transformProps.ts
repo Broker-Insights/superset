@@ -37,7 +37,6 @@ import {
   isIntervalAnnotationLayer,
   isPhysicalColumn,
   isTimeseriesAnnotationLayer,
-  t,
   TimeseriesChartDataResponseResult,
   NumberFormats,
 } from '@superset-ui/core';
